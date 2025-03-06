@@ -8,38 +8,44 @@ for (var i = 0; i < noofbuttons; i++) {
 }
 
 document.addEventListener("keypress", function (event) {
-    makesound(event.key);
-    newanimation(event.key);
+    if ("wasdjkl".includes(event.key)) {
+        if (!music1.paused) {
+            music1.pause();  // Stop the music if playing
+            music1.currentTime = 0; // Reset music to start
+        }
+        makesound(event.key);
+        newanimation(event.key);
+    }
 });
 
 function makesound(key) {
     switch (key) {
         case "w":
-            var tom3 = new Audio("tom-3.mp3");
+            var tom3 = new Audio("assets/sounds/tom-3.mp3");
             tom3.play();
             break;
         case "a":
-            var tom1 = new Audio("tom-1.mp3");
+            var tom1 = new Audio("assets/sounds/tom-1.mp3");
             tom1.play();
             break;
         case "s":
-            var tom2 = new Audio("tom-2.mp3");
+            var tom2 = new Audio("assets/sounds/tom-2.mp3");
             tom2.play();
             break;
         case "d":
-            var tom4 = new Audio("tom-4.mp3");
+            var tom4 = new Audio("assets/sounds/tom-4.mp3");
             tom4.play();
             break;
         case "j":
-            var crash = new Audio("crash.mp3");
+            var crash = new Audio("assets/sounds/crash.mp3");
             crash.play();
             break;
         case "k":
-            var kick = new Audio("kickbass.mpeg");
+            var kick = new Audio("assets/sounds/kickbass.mpeg");
             kick.play();
             break;
         case "l":
-            var snare = new Audio("snare.mp3");
+            var snare = new Audio("assets/sounds/snare.mp3");
             snare.play();
             break;
         default:
@@ -58,19 +64,11 @@ function newanimation(currentkey) {
     }, 100);
 }
 
-var music1 = new Audio("music.mp3");
+// Global music variable
+var music1 = new Audio("assets/sounds/music.mp3");
 
 function makesound1() {
-    music1.pause();
-    music1.currentTime = 0;
-    music1.play();
+    music1.pause(); // Stop the current playback if playing
+    music1.currentTime = 0; // Reset music to the start
+    music1.play(); // Play from the beginning
 }
-
-document.addEventListener("keypress", function (event) {
-    if ("wasdjkl".includes(event.key)) {
-        if (!music1.paused) {
-            music1.pause();
-            music1.currentTime = 0;
-        }
-    }
-});
